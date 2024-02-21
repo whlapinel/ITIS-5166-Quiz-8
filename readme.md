@@ -1,20 +1,40 @@
-# Info
-- For ITIS 5166, network-based-applications.  
-- Forked from instructor's repo.
+# Instructions for Quiz 08
+## Assignment Objectives: 
 
-## SEO Optimization Changes
-- remove extraneous code 
-- resolve error messages
-- remove deprecated and long-outdated head tag <keyword>
+- Measure the ability of the student to interact with Mongodb command line.
+- Measure the capability of the student to build express server with MongoDB based applications.
+- Measure the capability of the student to use mongoose ODM. 
 
-## Accessibility Changes
-- increased font size for visually impaired
-- removed duplicate paragraphs
-- added aria-label to background image
-- reduced awkward spacing between words by changing text-align: justify to text-align: left
+### Assignment Instructions: 
 
-## Coding Exercise 1 Notes
-- Added server, Axios, and ChartJS
-- Upgraded Node to be able to import JSON files in server.
-- Implemented ChartJS pie chart display
-- Added D3JS Chart
+#### This assignment will be divided into two parts:
+
+##### Part 1: How to interact with MongoDB using the command line: 
+
+- In this part you are required to install mongoDB on your system and make sure that you are able to access the database shell. After this you are required to perform the following operations. 
+
+- [] Create a new database
+- [] Create a new collection 
+- [] Show the created collections in the database 
+- [] Insert a new document into the collection
+- [] List all documents in a specific collection
+- [] Deliverables: 
+
+- - [] One screenshot that shows you performed the mentioned tasks. 
+
+##### Part 2: Fetching data from MongoDB in Nodejs: 
+
+- In the coding exercise 01 ($WIKI_REFERENCE$/pages/instructions-for-coding-exercise-01) you built an express server where your data was hard coded in a JSON-formatted file. You are required to change your server to read the data from MongoDB database instead. While you are doing this make sure to include the following: 
+
+- [] Make sure that your personal budget website is working and the data used for both charts is fetched from the database. 
+- [] You are required to implement an additional endpoint in your server to update the entries that you will show in your charts. The total number of endpoints are two. The first one is used to fetch the data from your database. The other one should be to add the functionality of adding new data.
+- [] You don’t need to have a specific webpage where you can add documents but you are required to test it using Postman.
+- [] You are required to use mongoose to interact with your database.
+- [] You have to build a schema model to include the following data (title, related value, color). In other words, you are not supposed  to have any chart data-related hard coded. 
+- [] The color field must be enforced to be in the at least 6 digits (hexadecimal format. (eg: #ED4523)). In addition, all fields are required.
+- [] Your code must be pushed to your Github account. 
+
+- [] Deliverables:
+
+- - [] A screenshot from Postman of your testing of the add document endpoint. 
+- - [] Github repository link. 

@@ -64,17 +64,24 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        const ctx = document.getElementById('myChart');
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v6.js"></script>
 
+    <script>
+        renderCharts();
+        async function renderCharts() {
+            const data = await getData();
+            renderChart(data);
+            renderD3(data);
+        }
         async function getData() {
-            const response = await axios.get('http://localhost:3000/budget');
+            const response = await axios.get('http://localhost:3000/api/budget');
             console.log(response.data);
             return response.data;
         }
-
-        async function renderChart() {
-            const data = await getData();
+        async function renderChart(data) {
+            const ctx = document.getElementById('myChart');
+            // const data = await getData();
             const labels = data.map(item => item.title);
             const values = data.map(item => item.budget);
             console.log(labels, values);
@@ -90,72 +97,18 @@
                 },
             });
         }
-        renderChart();
-    </script>
-
-    <!-- Load d3.js -->
-    <script src="https://d3js.org/d3.v6.js"></script>
-
-    <!-- Create a div where the graph will take place -->
-
-    <script>
-        // Create dummy data
-        // create function to convert array to object where the first 
-        // element is the key and the second is the value
-        async function convertData() {
-            const response = await axios.get('http://localhost:3000/budget');
-            const data = response.data;
-            const obj = {};
-            data.forEach(item => {
-                obj[item.title] = item.budget;
-            });
-            return obj;
-        }
-
-        async function renderPie() {
-            const data = await convertData();
-            console.log(data);
-            // const data = { a: 9, b: 20, c: 30, d: 8, e: 12 }
-
-            //     // set the dimensions and margins of the graph
-            //     const width = 450,
-            //         height = 450,
-            //         margin = 40;
-
-            //     // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-            //     const radius = Math.min(width, height) / 2 - margin
-
-            //     // append the svg object to the div called 'my_dataviz'
-            //     const svg = d3.select("#my_dataviz")
-            //         .append("svg")
-            //         .attr("width", width)
-            //         .attr("height", height)
-            //         .append("g")
-            //         .attr("transform", `translate(${width / 2},${height / 2})`);
-
-            //     // set the color scale
-            //     const color = d3.scaleOrdinal()
-            //         .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56"])
-
-            //     // Compute the position of each group on the pie:
-            //     const pie = d3.pie()
-            //         .value(d => d[1])
-
-            //     const data_ready = pie(Object.entries(data))
-
-            //     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-            //     svg
-            //         .selectAll('whatever')
-            //         .data(data_ready)
-            //         .join('path')
-            //         .attr('d', d3.arc()
-            //             .innerRadius(100)         // This is the size of the donut hole
-            //             .outerRadius(radius)
-            //         )
-            //         .attr('fill', d => color(d.data[0]))
-            //         .attr("stroke", "black")
-            //         .style("stroke-width", "2px")
-            //         .style("opacity", 0.7)
+        async function renderD3(data) {
+            async function convertData(data) {
+                // const response = await axios.get('http://localhost:3000/budget');
+                // const data = response.data;
+                const obj = {};
+                data.forEach(item => {
+                    obj[item.title] = item.budget;
+                });
+                return obj;
+            }
+            const convertedData = await convertData(data);
+            console.log(convertedData);
 
             // set the dimensions and margins of the graph
             const width = 600,
@@ -173,22 +126,17 @@
                 .append("g")
                 .attr("transform", `translate(${width / 2},${height / 2})`);
 
-            // Create dummy data
-            // const data = { a: 9, b: 20, c: 30, d: 8, e: 12, f: 3, g: 7, h: 14 }
 
             // set the color scale
-
-            // get array of keys
-            const dataKeys = Object.keys(data);
             const color = d3.scaleOrdinal()
-                .domain(dataKeys)
+                .domain(["a", "b", "c", "d", "e", "f", "g", "h"])
                 .range(d3.schemeDark2);
 
             // Compute the position of each group on the pie:
             const pie = d3.pie()
                 .sort(null) // Do not sort group by size
                 .value(d => d[1])
-            const data_ready = pie(Object.entries(data))
+            const data_ready = pie(Object.entries(convertedData))
 
             // The arc generator
             const arc = d3.arc()
@@ -245,10 +193,7 @@
                     return (midangle < Math.PI ? 'start' : 'end')
                 })
         }
-
-        renderPie();
     </script>
-
     <footer class="bottom">
         <div class="center">
             All rights reserved &copy; Will Lapinel
