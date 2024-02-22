@@ -18,9 +18,11 @@
 - [x] Show the created collections in the database 
 - [x] Insert a new document into the collection
 - [x] List all documents in a specific collection
-- [] Deliverables: 
+- [x] Deliverables: 
 
-- - [] One screenshot that shows you performed the mentioned tasks. 
+- - [x] One screenshot that shows you performed the mentioned tasks. 
+- - - (note to self: see screenshots folder, file date 2/22)
+
 
 ##### Part 2: Fetching data from MongoDB in Nodejs: 
 
@@ -30,11 +32,13 @@
 - [x] You are required to implement an additional endpoint in your server to update the entries that you will show in your charts. The total number of endpoints are two. The first one is used to fetch the data from your database. The other one should be to add the functionality of adding new data.
 - [x] You don’t need to have a specific webpage where you can add documents but you are required to test it using Postman.
 - [x] You are required to use mongoose to interact with your database.
-- [] You have to build a schema model to include the following data (title, related value, color). In other words, you are not supposed  to have any chart data-related hard coded. 
-- [] The color field must be enforced to be in the at least 6 digits (hexadecimal format. (eg: #ED4523)). In addition, all fields are required.
+- [x] You have to build a schema model to include the following data (title, related value, color). In other words, you are not supposed  to have any chart data-related hard coded. 
+- [x] The color field must be enforced to be in the at least 6 digits (hexadecimal format. (eg: #ED4523)). In addition, all fields are required.
 - [x] Your code must be pushed to your Github account. 
 
-- [] Deliverables:
+- [x] Deliverables:
 
-- - [] A screenshot from Postman of your testing of the add document endpoint. 
-- - [] Github repository link. 
+- - [x] A screenshot from Postman of your testing of the add document endpoint. 
+- - - (note to self: see screenshots folder, file date 2/22)
+
+- - [x] Github repository link. 
